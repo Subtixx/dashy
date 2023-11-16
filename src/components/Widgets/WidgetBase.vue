@@ -101,6 +101,7 @@ const COMPAT = {
   'pi-hole-stats': 'PiHoleStats',
   'pi-hole-top-queries': 'PiHoleTopQueries',
   'pi-hole-traffic': 'PiHoleTraffic',
+  'portainer-container': 'PortainerContainer',
   'proxmox-lists': 'Proxmox',
   'public-holidays': 'PublicHolidays',
   'public-ip': 'PublicIp',
