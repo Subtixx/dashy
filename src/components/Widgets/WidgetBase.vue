@@ -117,6 +117,7 @@ const COMPAT = {
   weather: 'Weather',
   'weather-forecast': 'WeatherForecast',
   'xkcd-comic': 'XkcdComic',
+  youtrack: 'YouTrack',
 };
 
 export default {
