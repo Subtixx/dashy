@@ -2674,6 +2674,34 @@ Show live data from an RSS-enabled service. The only required parameter is `rssU
 
 ---
 
+### YouTrack Issues
+
+Display a list of issues from a YouTrack project. The required parameters are `endpoint` and `accessToken`.
+
+<p align="center"><img width="400" src="https://i.ibb.co/6bHD3W7/Screenshot-20231116-230534.png" /></p>
+
+#### Options
+
+**Field** | **Type** | **Required** | **Description**
+--- | --- | --- | ---
+**`endpoint`** | `string` |  Required | The URL to the YouTrack instance, e.g. `https://youtrack.example.com`
+**`accessToken`** | `string` |  Required | A YouTrack access token, which can be generated in your profile settings
+**`maxIssues`** | `number` |  _Optional_ | Limit the number of issues returned, defaults to `10`
+**`dateTimeFormat`** | `string` |  _Optional_ | Specify the date format, defaults to `DD.MM.YYYY HH:mm`
+**`filter`** | `string` |  _Optional_ | Filter the issues by a query string, e.g. `#Unresolved` or `#Unresolved #Critical`
+
+#### Example
+
+```yaml
+- type: youtrack
+  options:
+    endpoint: https://youtrack.example.com
+    accessToken: perm:abc1234
+    maxIssues: 10
+    dateTimeFormat: DD.MM.YYYY HH:mm
+    filter: '#Unresolved #Critical'
+```
+
 ## Usage & Customizations
 
 ### Widget Usage Guide
