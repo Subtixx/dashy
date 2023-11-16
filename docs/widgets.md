@@ -66,6 +66,7 @@ Dashy has support for displaying dynamic content in the form of widgets. There a
   - [Gluetun VPN Info](#gluetun-vpn-info)
   - [Drone CI Build](#drone-ci-builds)
   - [Linkding](#linkding)
+  - [YouTrack](#youtrack)
 - **[System Resource Monitoring](#system-resource-monitoring)**
   - [CPU Usage Current](#current-cpu-usage)
   - [CPU Usage Per Core](#cpu-usage-per-core)
@@ -2276,6 +2277,44 @@ Linkding is a self-hosted bookmarking service, which has a clean interface and i
 
 ---
 
+### YouTrack
+
+Display a list of issues from a YouTrack project. The required parameters are `endpoint` and `accessToken`.
+
+<p align="center"><img width="400" src="https://i.ibb.co/6bHD3W7/Screenshot-20231116-230534.png" /></p>
+
+#### Options
+
+**Field** | **Type** | **Required** | **Description**
+--- | --- | --- | ---
+**`endpoint`** | `string` |  Required | The URL to the YouTrack instance, e.g. `https://youtrack.example.com`
+**`accessToken`** | `string` |  Required | A YouTrack access token, which can be generated in your profile settings
+**`maxIssues`** | `number` |  _Optional_ | Limit the number of issues returned, defaults to `10`
+**`dateTimeFormat`** | `string` |  _Optional_ | Specify the date format, defaults to `DD.MM.YYYY HH:mm`
+**`filter`** | `string` |  _Optional_ | Filter the issues by a query string, e.g. `#Unresolved` or `#Unresolved #Critical`
+
+#### Example
+
+```yaml
+- type: youtrack
+  options:
+    endpoint: https://youtrack.example.com
+    accessToken: perm:abc1234
+    maxIssues: 10
+    dateTimeFormat: DD.MM.YYYY HH:mm
+    filter: '#Unresolved #Critical'
+```
+
+#### Info
+
+- **CORS**: 🟢 ?
+- **Auth**: 🟢 Required, using an access token
+- **Price**: 🟢 Free for up to 10 users
+- **Host**: Self-Hosted (see [YouTrack](https://www.jetbrains.com/youtrack/))
+- **Privacy**: _See [YouTrack](https://www.jetbrains.com/youtrack/)_
+
+---
+
 ## System Resource Monitoring
 
 ### Glances
@@ -2670,36 +2709,6 @@ Show live data from an RSS-enabled service. The only required parameter is `rssU
 - type: rss-feed
   options:
     rssUrl: https://notes.aliciasykes.com/feed
-```
-
----
-
-### YouTrack Issues
-
-Display a list of issues from a YouTrack project. The required parameters are `endpoint` and `accessToken`.
-
-<p align="center"><img width="400" src="https://i.ibb.co/6bHD3W7/Screenshot-20231116-230534.png" /></p>
-
-#### Options
-
-**Field** | **Type** | **Required** | **Description**
---- | --- | --- | ---
-**`endpoint`** | `string` |  Required | The URL to the YouTrack instance, e.g. `https://youtrack.example.com`
-**`accessToken`** | `string` |  Required | A YouTrack access token, which can be generated in your profile settings
-**`maxIssues`** | `number` |  _Optional_ | Limit the number of issues returned, defaults to `10`
-**`dateTimeFormat`** | `string` |  _Optional_ | Specify the date format, defaults to `DD.MM.YYYY HH:mm`
-**`filter`** | `string` |  _Optional_ | Filter the issues by a query string, e.g. `#Unresolved` or `#Unresolved #Critical`
-
-#### Example
-
-```yaml
-- type: youtrack
-  options:
-    endpoint: https://youtrack.example.com
-    accessToken: perm:abc1234
-    maxIssues: 10
-    dateTimeFormat: DD.MM.YYYY HH:mm
-    filter: '#Unresolved #Critical'
 ```
 
 ## Usage & Customizations
