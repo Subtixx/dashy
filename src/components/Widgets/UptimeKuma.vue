@@ -44,6 +44,15 @@ export default {
       const apiKey = `:${this.options.apiKey}`;
       return btoa(apiKey);
     },
+    nameFilter() {
+      if (!this.options.nameFilter) {
+        return [];
+      }
+      if (!Array.isArray(this.options.nameFilter)) {
+        return [];
+      }
+      return this.options.nameFilter;
+    },
   },
   methods: {
     fetchData() {
@@ -61,21 +70,23 @@ export default {
       for (let i = 0; i < lines.length; i += 1) {
         if (lines[i].startsWith('monitor_response_time')) {
           const responseTime = this.parseResponseTime(lines[i]);
-
-          if (!this.services[responseTime.name]) {
-            this.services[responseTime.name] = responseTime;
-          } else {
-            // in ms
-            this.services[responseTime.name].responseTime = responseTime.value;
+          if (!(this.nameFilter.length > 0 && !this.nameFilter.includes(responseTime.name))) {
+            if (!this.services[responseTime.name]) {
+              this.services[responseTime.name] = responseTime;
+            } else {
+              // in ms
+              this.services[responseTime.name].responseTime = responseTime.value;
+            }
           }
         } else if (lines[i].startsWith('monitor_status')) {
           const status = this.parseStatus(lines[i]);
-
-          if (!this.services[status.name]) {
-            this.services[status.name] = status;
-          } else {
-            // 1 = up, 0 = down
-            this.services[status.name].status = status.value;
+          if (!(this.nameFilter.length > 0 && !this.nameFilter.includes(status.name))) {
+            if (!this.services[status.name]) {
+              this.services[status.name] = status;
+            } else {
+              // 1 = up, 0 = down
+              this.services[status.name].status = status.value;
+            }
           }
         }
       }
