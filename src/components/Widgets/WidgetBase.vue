@@ -114,6 +114,7 @@ const COMPAT = {
   'system-info': 'SystemInfo',
   'tfl-status': 'TflStatus',
   'wallet-balance': 'WalletBalance',
+  wakatime: 'Wakatime',
   weather: 'Weather',
   'weather-forecast': 'WeatherForecast',
   'xkcd-comic': 'XkcdComic',
